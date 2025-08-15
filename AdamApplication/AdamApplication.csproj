@@ -8,8 +8,10 @@
 
   <ItemGroup>
     <Folder Include="Resources\" />
-    <Folder Include="Repositories\" />
-    <Folder Include="Services\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AdamApi\AdamApi.csproj" />
   </ItemGroup>
 
 </Project>
