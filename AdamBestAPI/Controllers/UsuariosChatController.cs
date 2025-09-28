@@ -1,17 +1,27 @@
-﻿using AdamApi.Entities;
-using AdamApplication.Repositories;
+﻿using AdamApi.DTOS;
+using AdamApplication.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AdamBestAPI.Controllers
 {
-    public class UsuariosChatController(IGenericRepository<UsuariosChatEntity, long> usuariosChatRepository) : Controller
+    public class UsuariosChatController(UsuariosChatService usuariosChatService) : Controller
     {
-        private readonly IGenericRepository<UsuariosChatEntity, long> _usuariosChatRepository = usuariosChatRepository;
+        private readonly UsuariosChatService _usuariosChatService = usuariosChatService;
+
         [HttpPost]
         [Route("CrearUsuariosChat")]
-        public async Task CreateAsync([FromBody] UsuariosChatEntity usuariosChat)
+        public async Task<IActionResult> CreateAsync([FromBody] UsuariosChatDTO usuariosChatDTO)
         {
-           await _usuariosChatRepository.CreateAsync(usuariosChat);
+            await _usuariosChatService.CreateAsync(usuariosChatDTO);
+            return Ok("Usuario creado correctamente");
+        }
+
+        [HttpGet]
+        [Route("ObtenerUsuariosChatPorId/{id}")]
+        public async Task<IActionResult> UsuariosGet(string id)
+        {
+            var result = await _usuariosChatService.UsuariosGet(id);
+            return Ok(result);
         }
     }
 }

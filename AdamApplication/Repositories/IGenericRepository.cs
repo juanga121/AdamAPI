@@ -11,7 +11,8 @@ namespace AdamApplication.Repositories
     {
         Task CreateAsync(T entity);
         Task DeleteAsync(TKey entity);
-        Task<T> FindByIdAsync(TKey id);
+        Task<T?> FindByIdAsync(TKey id);
+        Task<T?> FindByIdStringAsync(string id);
         Task<List<T>> GetAllAsync();
         List<T> GetByFilter(Expression<Func<T, bool>> filter);
         IEnumerable<T> GetByFilterOrdered(Expression<Func<T, bool>> predicate,

@@ -1,4 +1,5 @@
-﻿using AdamApi.Entities;
+﻿using AdamApi.DTOS;
+using AdamApi.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -12,5 +13,6 @@ namespace AdamInfrastructure.Data
     {
         public DbSet<MensajesChatEntity> MensajesChat { get; set; }
         public DbSet<UsuariosChatEntity> UsuariosChat { get; set; }
+        public DbSet<ProductosEntity> Productos { get; set; }
     }
 }

@@ -35,10 +35,14 @@ namespace AdamInfrastructure.Repositories
             _dbSet.Remove(result);
             await _efContext.SaveChangesAsync();
         }
-        public async Task<T> FindByIdAsync(TKey id)
+        public async Task<T?> FindByIdAsync(TKey id)
         {
-            return await _dbSet.FindAsync(id) ??
-                throw new Exception($"{nameof(T)} Not Found");
+            return await _dbSet.FindAsync(id);
+        }
+        public async Task<T?> FindByIdStringAsync(string id)
+        {
+            return await _dbSet.FirstOrDefaultAsync(e =>
+            EF.Property<string>(e, "IdUsuario") == id);
         }
         public async Task<List<T>> GetAllAsync()
         {
